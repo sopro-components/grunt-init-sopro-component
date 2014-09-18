@@ -17,7 +17,7 @@ module.exports = function(grunt) {
       %}
 
       {% 
-      if(autocompileSass){
+      if(compileSass){
       %}
       sass: {
         files: ['sass/*'],
@@ -74,23 +74,17 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-bower-task');
   {% 
-  if(autocompileJade || autocompileSass){
+  if(autocompileJade || compileSass){
   %}
   grunt.loadNpmTasks('grunt-contrib-watch');
   {%
   };
   %}
 
-  {% 
-  if(autocompileJade){
-  %}
   grunt.loadNpmTasks('grunt-contrib-jade');
-  {%
-  };
-  %}
 
   {% 
-  if(autocompileSass){
+  if(compileSass){
   %}
   grunt.loadNpmTasks('grunt-contrib-sass');
   {%
@@ -100,18 +94,18 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', [
     'bower:install',
+    'jade:compile',
 
     {% 
     if(autocompileJade){
     %}
-    'jade:compile',
     'watch:jade',
     {%
     };
     %}
 
     {% 
-    if(autocompileSass){
+    if(compileSass){
     %}
     'sass:compile',
     'watch:sass',
