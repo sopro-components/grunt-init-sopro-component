@@ -3,12 +3,17 @@ grunt-init-sopro-component
 
 This grunt init script builds a scaffold for a Society Pro Component.
 
+Prerequisites
+-------------
+Setup grunt and grunt-init:
+
+    $ npm install -g grunt grunt-init
+
 Usage
 -----
 Be in Git Bash so ~ works:
 
     $ git clone https://github.com/sopro-components/grunt-init-sopro-component.git ~/.grunt-init/sopro-component
-    $ npm install -g grunt grunt-init
     $ cd my-sweet-component
     $ grunt-init sopro-component
     $ cd src
