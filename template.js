@@ -123,7 +123,7 @@ exports.template = function(grunt, init, done) {
 
       grunt.log.writeln('');
       grunt.log.writeln('');
-      grunt.log.subhead('Grunting '+props.title):
+      grunt.log.subhead('Grunting '+props.title);
 
       // Files to copy (and process).
       var files = init.filesToCopy(props);
