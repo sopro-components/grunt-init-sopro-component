@@ -33,7 +33,7 @@ exports.template = function(grunt, init, done) {
       // Invoke custom prompts:
       {
         name: 'autocompile',
-        message: 'Want to watch jade and sass and autocompile them?',
+        message: 'Want to autocompile jade and sass when files change?',
         default: 'Y/n',
         warning: ''
       },
@@ -104,6 +104,7 @@ exports.template = function(grunt, init, done) {
       // Generate package.json file, used by npm and grunt.
       init.writePackageJSON('src/package.json', {
         author: "Central Services Inc",
+        postinstall: "grunt",
         name: props.name,
         version: props.version,
         description: props.description,
@@ -121,6 +122,15 @@ exports.template = function(grunt, init, done) {
         devDependencies: bowerDDeps,
         dependencies: bowerDeps,
       });
+
+      grunt.log.writeIn('bower.json, package.json, Gruntfile.js generated.')
+      var autocompileSnip = props.autocompile 
+        ? " and autocompile jade/sass" : "";
+      var nextStepLog = 
+        'Execute the new Gruntfile to install dependencies'+autocompileSnip+'.';
+
+      grunt.log.writeIn(nextStepLog);
+      grunt.log.writeIn('cd src; npm install');
 
       // All done!
       done();
