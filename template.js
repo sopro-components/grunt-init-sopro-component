@@ -105,7 +105,7 @@ exports.template = function(grunt, init, done) {
         bowerDeps["sopro-material"] = "https://github.com/sopro-components/sopro-material.git#0.1.1-dev1";
       }
       if (props.japi) {
-        bowerDeps["japi"] = "https://github.com/SocietyPro/japi.git#0.1.0",
+        bowerDeps["japi"] = "https://github.com/SocietyPro/japi.git#0.1.0";
       }
       if (!noJquery) {
         bowerDeps['jquery'] = props.jquery;
