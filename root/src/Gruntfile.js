@@ -84,8 +84,8 @@ module.exports = function(grunt) {
     %}
       'jade:compile',
       'sass:compile',
-      'watch:jade'
-      'watch:sass'
+      'watch:jade',
+      'watch:sass',
     {%
     };
     %}
