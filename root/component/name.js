@@ -1,4 +1,4 @@
-/**
+ /**
  * @ngdoc module
  * @name sopro.components.{%=ngName%}
  */
@@ -35,9 +35,12 @@ function {%=ngName%}Directive($$rAF) {
     scope: {
       titleHint: "@",
     },
+    /*
     template:
       '<div class="gruntDefault">' +
         '<div ng-transclude></div>' +
       '</div>',
+    */
+    templateUrl: '{%name%}.html'
   };
 }
