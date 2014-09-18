@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         options:{
           targetDir: '../component/bower_components',
           layout: 'byComponent',
-          copy: false,
+          copy: true,
           cleanTargetDir: true,
           verbose: true,
         }
