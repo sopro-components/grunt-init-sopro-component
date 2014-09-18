@@ -1,6 +1,4 @@
-var pagerTestModule = angular.module("pagerTest", ['ngMaterial'])
-.controller("pagerTestCtrl", function ($scope, $rootScope, $element) {
+var soproTestModule = angular.module("soproTest", ['ngMaterial'])
+.controller("soproTestCtrl", function ($scope, $rootScope, $element) {
   $scope.testVar = 'Test Scope Variable';
 });
-/*
-*/

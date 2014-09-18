@@ -13,8 +13,8 @@ html
       .blue{background-color: blue}
       .red{background-color: red}
   body(
-  ng-app="pagerTest" 
-  ng-controller="pagerTestCtrl"
+  ng-app="soproTest" 
+  ng-controller="soproTestCtrl"
   layout="vertical"
   )
     nav(
@@ -25,7 +25,7 @@ html
       div {%title%}
       div Menu Item 2
     section#content(flex)
-      ng-include(src="'sopro-pager.html'")
+      ng-include(src="'{%=name%}.html'")
         div#subContent1(
         layout="horizontal"
         layout-fill
