@@ -89,16 +89,16 @@ exports.template = function(grunt, init, done) {
       }
 
       if (props.soproMaterial) {
-        bowerDeps['https://github.com/sopro-components/sopro-material.git'] = '0.1.0';
+        bowerDeps['https://github.com/sopro-components/sopro-material.git'] = '0.1.1-dev1';
       }
       if (props.japi) {
-        bowerDeps['https://github.com/SocietyPro/japi.git'] = '*';
+        bowerDeps['https://github.com/SocietyPro/japi.git'] = '0.1.0';
       }
       if (props.jquery) {
         bowerDeps['jquery'] = props.jquery;
       }
       if (props.roboto) {
-        bowerDeps['https://github.com/sopro-components/roboto.git'] = '*';
+        bowerDeps['https://github.com/sopro-components/roboto.git'] = '0.1.0';
       }
 
       // Generate package.json file, used by npm and grunt.
