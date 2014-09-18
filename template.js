@@ -125,8 +125,7 @@ exports.template = function(grunt, init, done) {
 
       grunt.log.writeln('');
       grunt.log.writeln('');
-      grunt.log.writeln('bower.json, package.json, Gruntfile.js generated for'+props.name+'.')
-      grunt.log.writeln('Great!');
+      grunt.log.writeln('bower.json, package.json, Gruntfile.js were generated for '+props.name+'.')
       grunt.log.writeln('Now, run your new scripts with:');
       grunt.log.writeln('  cd src; npm install');
 
