@@ -1,0 +1,35 @@
+doctype html
+html
+  head
+    script(src='bower_components/angular/angular.js', type='text/javascript')
+    script(src='bower_components/sopro-material/js/angular-material.js', type='text/javascript')
+    script(src='bower_components/angular-animate/angular-animate.js', type='text/javascript')
+    script(src='demo.js', type='text/javascript')
+    link(href='bower_components/sopro-material/css/angular-material.css', rel='stylesheet')
+    link(href='bower_components/sopro-material/css/sopro-material.css', rel='stylesheet')
+    style.
+      nav{ height: 60px; background-color: blue; color: white}
+      left, right{height: 100%}
+      .blue{background-color: blue}
+      .red{background-color: red}
+  body(
+  ng-app="pagerTest" 
+  ng-controller="pagerTestCtrl"
+  layout="vertical"
+  )
+    nav(
+    layout="horizontal"
+    layout-align="space-around"
+    )
+      div Menu Item 1
+      div Menu Item 2
+    section#content(flex)
+      ng-include(src="'sopro-pager.html'")
+        div#subContent1(
+        layout="horizontal"
+        layout-fill
+        )
+          div.left.blue(flex="50")
+          div.right.red(flex="50")
+        div#subContent2
+        div#subContent3
