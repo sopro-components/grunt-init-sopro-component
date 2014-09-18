@@ -117,9 +117,6 @@ exports.template = function(grunt, init, done) {
       props.japi = /y/i.test(props.japi);
       props.roboto = /y/i.test(props.roboto);
 
-      // No valid jquery versions start with n. Assume 'no jquery'
-      var noJquery = /^n/i.test(props.jquery);
-   
 
       grunt.log.writeln('');
       grunt.log.writeln('');
@@ -129,8 +126,6 @@ exports.template = function(grunt, init, done) {
       var files = init.filesToCopy(props);
       // Actually copy (and process) files.
       init.copyAndProcess(files, props);
-      grunt.log.ok('Scaffold files');
-      grunt.log.ok('Gruntfile.js');
 
       // Craft src/package.json
       var bowerDeps = {};
@@ -140,10 +135,10 @@ exports.template = function(grunt, init, done) {
 
       npmDDeps['grunt'] = '~0.4.5';
       npmDDeps['grunt-bower-task'] = "^0.4.0";
+      npmDDeps['grunt-contrib-jade'] = '~0.12.0';
 
       if(props.autocompileJade){
         npmDDeps['grunt-contrib-watch'] = '~0.6.1';
-        npmDDeps['grunt-contrib-jade'] = '~0.12.0';
       }
       if(props.compileSass){
         npmDDeps['grunt-contrib-watch'] = '~0.6.1';
@@ -156,6 +151,9 @@ exports.template = function(grunt, init, done) {
       if (props.japi) {
         bowerDeps["japi"] = "https://github.com/SocietyPro/japi.git#0.1.0";
       }
+
+      // No valid jquery versions start with n. Assume 'no jquery'
+      var noJquery = /^n/i.test(props.jquery);
       if (!noJquery) {
         bowerDeps['jquery'] = props.jquery;
       }
@@ -177,7 +175,6 @@ exports.template = function(grunt, init, done) {
         devDependencies: npmDDeps,
         dependencies: npmDeps,
       });
-      grunt.log.ok('package.json');
 
       // Generate bower.json file
       init.writePackageJSON('src/bower.json', {
@@ -189,9 +186,8 @@ exports.template = function(grunt, init, done) {
         devDependencies: bowerDDeps,
         dependencies: bowerDeps,
       });
-      grunt.log.ok('bower.json');
+      grunt.log.ok('Scaffold files, Gruntfile, package.json, bower.json created');
       grunt.log.writeln('');
-      grunt.log.ok('Success!');
       grunt.log.writeln('Now, run these new scripts with:');
       grunt.log.subhead('  cd src; npm install');
 
