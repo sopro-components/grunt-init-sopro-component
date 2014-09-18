@@ -68,7 +68,21 @@ exports.template = function(grunt, init, done) {
     ]
     // Callback argument, to be invoked after all prompts:
     , function(err, props){
+      // props is a dictionary of the user's responses
+
       if(err){console.log(err);}
+
+      // Pick a name suitable for angular directives based on props.name:
+      var n = props.name;
+      while(/\-/.test(n)){              // while a dash still appears in n:
+        var i = n.indexOf('-');         // find the leftmost dash
+        n[i+1] = n[i+1].toUpperCase();  // camelcase whatever's after the dash
+        var left = n.slice(0, i);       // take everything before the dash
+        var right = n.slice(i+1);       // and everything after the dash
+        n = left.concat(right);         // and set n to that
+      }                                 // repeat
+      props.ngName = n;
+
       props.autocompileJade = /y/i.test(props.autocompileJade);
       props.autocompileSass = /y/i.test(props.autocompileSass);
       props.soproMaterial = /y/i.test(props.soproMaterial);
@@ -76,6 +90,7 @@ exports.template = function(grunt, init, done) {
       props.japi = /y/i.test(props.japi);
       props.roboto = /y/i.test(props.roboto);
 
+      // No valid jquery versions start with n. Assume 'no jquery'
       var noJquery = /^n/i.test(props.jquery);
    
       // Files to copy (and process).
