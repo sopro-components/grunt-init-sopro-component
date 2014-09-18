@@ -27,6 +27,7 @@ exports.template = function(grunt, init, done) {
       // Invoke built in prompts:
       init.prompt('name'),
       init.prompt('title'),
+      init.prompt('description'),
       init.prompt('repository'),
       init.prompt('version'),
       // Invoke custom prompts:
@@ -101,9 +102,24 @@ exports.template = function(grunt, init, done) {
       }
 
       // Generate package.json file, used by npm and grunt.
-      init.writePackageJSON('package.json', {
+      init.writePackageJSON('src/package.json', {
+        author: "Central Services Inc",
+        name: props.name,
+        version: props.version,
+        description: props.description,
         node_version: '>= 0.10.0',
         devDependencies: npmDDeps,
+        dependencies: npmDeps,
+      });
+
+      // Generate bower.json file
+      init.writePackageJSON('src/bower.json', {
+        author: "Central Services Inc",
+        name: props.name,
+        version: props.version,
+        description: props.description,
+        devDependencies: bowerDDeps,
+        dependencies: bowerDeps,
       });
 
       // All done!
