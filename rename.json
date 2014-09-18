@@ -1,0 +1,5 @@
+{
+  "src/jade/name.jade": "src/jade/{%= name %}.jade",
+  "component/name.html": "component/{%= name %}.html",
+  "component/name.js": "component/{%= name %}.js"
+}
