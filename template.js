@@ -60,7 +60,7 @@ exports.template = function(grunt, init, done) {
         warning: ''
       },
       {
-        name: 'autocompileSass',
+        name: 'compileSass',
         message: 'Will you be compiling sass to css? (Warning, you need ruby)',
         default: 'no',
         warning: ''
@@ -106,7 +106,7 @@ exports.template = function(grunt, init, done) {
       props.ngName = n;
 
       props.autocompileJade = /y/i.test(props.autocompileJade);
-      props.autocompileSass = /y/i.test(props.autocompileSass);
+      props.compileSass = /y/i.test(props.compileSass);
       props.soproMaterial = /y/i.test(props.soproMaterial);
 
       props.japi = /y/i.test(props.japi);
@@ -133,7 +133,7 @@ exports.template = function(grunt, init, done) {
         npmDDeps['grunt-contrib-watch'] = '~0.6.1';
         npmDDeps['grunt-contrib-jade'] = '~0.12.0';
       }
-      if(props.autocompileSass){
+      if(props.compileSass){
         npmDDeps['grunt-contrib-watch'] = '~0.6.1';
         npmDDeps['grunt-contrib-sass'] = '~0.8.1';
       }
@@ -158,6 +158,7 @@ exports.template = function(grunt, init, done) {
           postinstall: "grunt",
         },
         name: props.name,
+        repository: props.repository,
         version: props.version,
         description: props.description,
         node_version: '>= 0.10.0',
@@ -169,6 +170,7 @@ exports.template = function(grunt, init, done) {
       init.writePackageJSON('src/bower.json', {
         author: "Central Services Inc",
         name: props.name,
+        repository: props.repository,
         version: props.version,
         description: props.description,
         devDependencies: bowerDDeps,
