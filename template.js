@@ -7,6 +7,8 @@
 
 'use strict';
 
+var path = require('path');
+
 // Basic template description.
 exports.description = 'Create a Society Pro Component.';
 
