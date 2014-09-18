@@ -89,22 +89,24 @@ exports.template = function(grunt, init, done) {
       }
 
       if (props.soproMaterial) {
-        bowerDeps['http://github.com/sopro-components/sopro-material'] = '0.1.0';
+        bowerDeps['http://github.com/sopro-components/sopro-material.git'] = '0.1.0';
       }
       if (props.japi) {
-        bowerDeps['http://github.com/SocietyPro/japi'] = '*';
+        bowerDeps['http://github.com/SocietyPro/japi.git'] = '*';
       }
       if (props.jquery) {
         bowerDeps['jquery'] = props.jquery;
       }
       if (props.roboto) {
-        bowerDeps['http://github.com/sopro-components/roboto'] = '*';
+        bowerDeps['http://github.com/sopro-components/roboto.git'] = '*';
       }
 
       // Generate package.json file, used by npm and grunt.
       init.writePackageJSON('src/package.json', {
         author: "Central Services Inc",
-        postinstall: "grunt",
+        scripts: {
+          postinstall: "grunt",
+        },
         name: props.name,
         version: props.version,
         description: props.description,
