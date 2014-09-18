@@ -1,5 +1,7 @@
 {
+  "src/jade":{% autocompileJade ? "src/jade" : false %},
   "src/jade/name.jade": "src/jade/{%= name %}.jade",
+  "src/sass":{% autocompileSass ? "src/sass" : false %},
   "src/sass/name.sass": "src/sass/{%= name %}.sass",
   "component/name.html": "component/{%= name %}.html",
   "component/name.js": "component/{%= name %}.js"

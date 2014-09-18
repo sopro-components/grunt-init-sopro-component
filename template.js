@@ -32,41 +32,51 @@ exports.template = function(grunt, init, done) {
       init.prompt('version'),
       // Invoke custom prompts:
       {
-        name: 'autocompile',
-        message: 'Want to autocompile jade and sass when files change?',
-        default: 'Y/n',
+        name: 'autocompileJade',
+        message: 'Will you be compiling jade html?',
+        default: 'no',
+        warning: ''
+      },
+      {
+        name: 'autocompileSass',
+        message: 'Will you be compiling sass to css? (Warning, you need ruby)',
+        default: 'no',
         warning: ''
       },
       {
         name: 'soproMaterial',
         message: 'Want sopro-material?',
-        default: 'Y/n',
+        default: 'yes',
         warning: 'SoPro\'s components, styles and scripts',
       },
       {
         name: 'japi',
         message: 'Want japi?',
-        default: 'Y/n',
+        default: 'no',
         warning: 'SoPro\'s javascript API'
       },
       {
         name: 'jquery',
-        message: 'Want jquery?',
+        message: 'Want jquery? What version?',
         default: '2.x',
       },
       {
         name: 'roboto',
         message: 'Want Roboto fonts?',
-        default: 'Y/n',
+        default: 'yes',
       },
     ]
     // Callback argument, to be invoked after all prompts:
     , function(err, props){
       if(err){console.log(err);}
-      props.autocompile = /y/i.test(props.autocompile);
+      props.autocompileJade = /y/i.test(props.autocompileJade);
+      props.autocompileSass = /y/i.test(props.autocompileSass);
       props.soproMaterial = /y/i.test(props.soproMaterial);
+
       props.japi = /y/i.test(props.japi);
       props.roboto = /y/i.test(props.roboto);
+
+      var noJquery = /^n/i.test(props.jquery);
    
       // Files to copy (and process).
       var files = init.filesToCopy(props);
@@ -82,23 +92,26 @@ exports.template = function(grunt, init, done) {
       npmDDeps['grunt'] = '~0.4.5';
       npmDDeps['grunt-bower-task'] = "^0.4.0";
 
-      if(props.autocompile){
+      if(props.autocompileJade){
+        npmDDeps['grunt-contrib-watch'] = '~0.6.1';
+        npmDDeps['grunt-contrib-jade'] = '~0.12.0';
+      }
+      if(props.autocompileSass){
         npmDDeps['grunt-contrib-watch'] = '~0.6.1';
         npmDDeps['grunt-contrib-sass'] = '~0.8.1';
-        npmDDeps['grunt-contrib-jade'] = '~0.12.0';
       }
 
       if (props.soproMaterial) {
-        bowerDeps['https://github.com/sopro-components/sopro-material.git'] = '0.1.1-dev1';
+        bowerDeps["sopro-material"] = "https://github.com/sopro-components/sopro-material.git#0.1.1-dev1";
       }
       if (props.japi) {
-        bowerDeps['https://github.com/SocietyPro/japi.git'] = '0.1.0';
+        bowerDeps["japi"] = "https://github.com/SocietyPro/japi.git#0.1.0",
       }
-      if (props.jquery) {
+      if (!noJquery) {
         bowerDeps['jquery'] = props.jquery;
       }
       if (props.roboto) {
-        bowerDeps['https://github.com/sopro-components/roboto.git'] = '0.1.0';
+        bowerDeps["roboto"] = "https://github.com/sopro-components/roboto.git#0.1.0";
       }
 
       // Generate package.json file, used by npm and grunt.
@@ -127,9 +140,9 @@ exports.template = function(grunt, init, done) {
 
       grunt.log.writeln('');
       grunt.log.writeln('');
-      grunt.log.writeln('bower.json, package.json, Gruntfile.js were generated for '+props.name+'.')
+      grunt.log.oklns('bower.json, package.json, Gruntfile.js were generated for '+props.name+'.')
       grunt.log.writeln('Now, run your new scripts with:');
-      grunt.log.writeln('  cd src; npm install');
+      grunt.log.subhead('  cd src; npm install');
 
       // All done!
       done();

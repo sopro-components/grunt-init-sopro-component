@@ -11,6 +11,8 @@ Be in Git Bash so ~ works:
     $ npm install -g grunt grunt-init
     $ cd my-sweet-component
     $ grunt-init sopro-component
+    $ cd src
+    $ npm install
     
 What it does
 ------------
