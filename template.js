@@ -123,14 +123,14 @@ exports.template = function(grunt, init, done) {
         dependencies: bowerDeps,
       });
 
-      grunt.log.writeIn('bower.json, package.json, Gruntfile.js generated.')
+      grunt.log.writeln('bower.json, package.json, Gruntfile.js generated.')
       var autocompileSnip = props.autocompile 
         ? " and autocompile jade/sass" : "";
       var nextStepLog = 
         'Execute the new Gruntfile to install dependencies'+autocompileSnip+'.';
 
-      grunt.log.writeIn(nextStepLog);
-      grunt.log.writeIn('cd src; npm install');
+      grunt.log.writeln(nextStepLog);
+      grunt.log.writeln('cd src; npm install');
 
       // All done!
       done();
