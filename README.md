@@ -13,14 +13,18 @@ Be in Git Bash so ~ works:
     $ grunt-init sopro-component
     $ cd src
     $ npm install
+
+Result
+------
+
     
 What it does
 ------------
 
 0. Check for non-empty directory and warn of overwrites
 1. Prompt:
-  * component name
-  * repo (default to sopro-components/*)
+  * component name, human readible title, description
+  * repo url (default to sopro-components/*)
   * wanna autocompile jade and sass?
   * wanna add sopro-material?
   * wanna add japi?

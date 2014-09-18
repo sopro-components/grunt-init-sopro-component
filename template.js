@@ -28,7 +28,27 @@ exports.template = function(grunt, init, done) {
       init.prompt('name'),
       init.prompt('title'),
       init.prompt('description'),
-      init.prompt('repository'),
+      {
+        name: 'repository',
+        message: 'What repository url?',
+        // This default function ripped from https://raw.githubusercontent.com/gruntjs/grunt-init/master/tasks/init.js
+        default: function(value, data, done) {
+          var types = ['javascript', 'js'];
+          if (data.type) { types.push(data.type); }
+          var type = '(?:' + types.join('|') + ')';
+          // This regexp matches:
+          //   leading type- type. type_
+          //   trailing -type .type _type and/or -js .js _js
+          var re = new RegExp('^' + type + '[\\-\\._]?|(?:[\\-\\._]?' + type + ')?(?:[\\-\\._]?js)?$', 'ig');
+          // Strip the above stuff from the current dirname.
+          var name = path.basename(process.cwd()).replace(re, '');
+          // Remove anything not a letter, number, dash, dot or underscore.
+          name = name.replace(/[^\w\-\.]/g, '');
+          // Prepend our git repo path.
+          name = "https://github.com/sopro-components/" + name + ".git";
+          done(null, name);
+        },
+      },
       init.prompt('version'),
       // Invoke custom prompts:
       {
