@@ -33,7 +33,8 @@ module.exports = function(grunt) {
           targetDir: '../component/bower_components',
           layout: 'byComponent',
           copy: true,
-          cleanTargetDir: true,
+          cleanTargetDir: false,
+          cleanBowerDir: false,
           verbose: true,
         }
       },
