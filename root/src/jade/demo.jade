@@ -26,7 +26,8 @@ html
       div {%title%}
       div Menu Item 2
     section#content(flex)
-      ng-include(src="'{%=name%}.html'")
+      //ng-include(src="'{%=name%}.html'")
+      {%name%}
         div#subContent1(
         layout="horizontal"
         layout-fill
