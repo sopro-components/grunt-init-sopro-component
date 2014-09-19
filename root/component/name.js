@@ -14,7 +14,7 @@ angular.module('sopro.components.{%=ngName%}', [
 /**
 * @ngdoc directive
 * @name {%=ngName%}
-* @module sopro.components.titlebar
+* @module sopro.components.{%=ngName%}
 *
 * @restrict E
 *
@@ -41,6 +41,6 @@ function {%=ngName%}Directive($$rAF) {
         '<div ng-transclude></div>' +
       '</div>',
     */
-    templateUrl: '{%name%}.html'
+    templateUrl: '{%=name%}.html'
   };
 }

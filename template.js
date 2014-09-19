@@ -103,11 +103,12 @@ exports.template = function(grunt, init, done) {
       var n = props.name;
       while(/\-/.test(n)){              // while a dash still appears in n:
         var i = n.indexOf('-');         // find the leftmost dash
-        n[i+1] = n[i+1].toUpperCase();  // camelcase whatever's after the dash
         var left = n.slice(0, i);       // take everything before the dash
-        var right = n.slice(i+1);       // and everything after the dash
-        n = left.concat(right);         // and set n to that
-      }                                 // repeat
+        var mid = n.slice(i+1, i+2)     // then the one character after the dash
+        var right = n.slice(i+2);       // and everything after that
+        mid = mid.toUpperCase();        // camelCase the letter after the dash
+        n = left+mid+right              // rejoin and set n to that
+      }                                 // repeat till no dashes left
       props.ngName = n;
 
       props.autocompileJade = /y/i.test(props.autocompileJade);
@@ -146,7 +147,7 @@ exports.template = function(grunt, init, done) {
       }
 
       if (props.soproMaterial) {
-        bowerDeps["sopro-material"] = "https://github.com/sopro-components/sopro-material.git#0.1.3";
+        bowerDeps["sopro-material"] = "https://github.com/sopro-components/sopro-material.git#0.1.4";
       }
       if (props.japi) {
         bowerDeps["japi"] = "https://github.com/SocietyPro/japi.git#0.1.0";
